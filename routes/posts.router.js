@@ -5,7 +5,6 @@ const RequestValidation = require("../middlewares/request-validation.middleware"
 const router = Router();
 
 router.get('/', PostController.getPosts);
-
 router.post('/', [
     body('title')
         .exists().withMessage("Title must be exists").bail()
@@ -14,7 +13,6 @@ router.post('/', [
         .exists().withMessage("Content must be exists").bail()
         .isLength({min: 10}).withMessage('Content must be at least 10 characters long')
 ], RequestValidation, PostController.addPost);
-
 router.put('/:title', PostController.updatePost)
 router.delete('/:title', PostController.deletePost)
 
